@@ -67,6 +67,7 @@ twitchClient.dicecooldown = false
 twitchClient.aliases = new enmap({ name: "aliases" })
 twitchClient.ccmds = new enmap({ name: "customcommands" })
 twitchClient.blacklist = new enmap({ name: "blacklist" })
+twitchClient.watchtime = new enmap({name: "watchtime"})
 twitchClient.blacklist.ensure("delmsg", [])
 twitchClient.commands = new enmap()
 twitchClient.cmds = []
