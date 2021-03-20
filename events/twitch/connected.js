@@ -8,9 +8,11 @@ module.exports = (client, addr, port) => {
             let uptime = await (await fetch(`https://decapi.me/twitch/uptime/${channel.slice(1)}`)).text()
             if (`#${uptime}` !== `${channel} is offline`) {
                 let active = (await (await fetch(`http://tmi.twitch.tv/group/user/${channel.slice(1)}/chatters`)).json()).chatters
-                active.forEach((_, viewer) => {
-                    client.watchtime.ensure(channel, 0, viewer)
-                    client.watchtime.inc(channel, viewer)
+                Object.values(active).forEach((viewers) => {
+                    viewers.forEach((viewer) => {
+                        client.watchtime.ensure(channel, 0, viewer)
+                        client.watchtime.inc(channel, viewer)
+                    })
                 })
             }
         });
